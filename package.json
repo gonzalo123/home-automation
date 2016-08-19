@@ -1,0 +1,20 @@
+{
+  "name": "fan",
+  "version": "1.0.0",
+  "description": "Trigger my fan connected to wemo switch depending on BeeWi sensor",
+  "main": "scan.js",
+  "dependencies": {
+    "bluetooth-hci-socket": "^0.5.0",
+    "noble": "^1.6.0",
+    "node": "^0.0.0",
+    "node-gearman": "^0.2.2",
+    "telebot": "^1.0.6",
+    "wemo-client": "^0.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gonzalo Ayuso",
+  "license": "MIT"
+}
