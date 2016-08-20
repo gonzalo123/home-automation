@@ -36,14 +36,7 @@ def getSensorData():
     print io
     return json.load(io)
 
-def listener(messages):
-    for m in messages:
-        if m.content_type == 'text':
-            c = m.chat
-            print "%s - %s %s (%s) [%s]: %s" % (m.date, c.first_name, c.last_name, c.username, c.id, m.text)
-
 bot = telebot.TeleBot(TOKEN)
-bot.set_update_listener(listener)
 
 # help page
 @bot.message_handler(commands=['help'])
