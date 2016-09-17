@@ -54,6 +54,11 @@ noble.on('stateChange', function(state) {
 });
 
 noble.on('discover', function(peripheral) {
+    console.log('peripheral discovered (' + peripheral.id +
+              ' with address <' + peripheral.address +  ', ' + peripheral.addressType + '>,' +
+              ' connectable ' + peripheral.connectable + ',' +
+              ' RSSI ' + peripheral.rssi + ':' + peripheral.advertisement.localName);
+
     if (peripheral.address == address) {
         var data = peripheral.advertisement.manufacturerData.toString('hex');
         beeWiData.temperature = parseFloat(hexToInt(data.substr(10, 2)+data.substr(8, 2))/10).toFixed(1);
@@ -65,7 +70,7 @@ noble.on('discover', function(peripheral) {
 });
 
 noble.on('scanStop', function() {
-    console.log(beeWiData);
+    console.log('scanStop', beeWiData);
     noble.stopScanning();
     callback();
 });
@@ -83,7 +88,7 @@ function workerCallback(payload, worker) {
         noble.stopScanning();
         noble.startScanning();
     } else {
-        setInterval(function() {
+        setTimeout(function() {
             workerCallback(payload, worker);
         }, 1000);
     }
