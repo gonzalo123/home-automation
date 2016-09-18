@@ -1,8 +1,10 @@
 # home automations
 Summer pet project
 
-I've got a fan connected to a Wemo switch (http://www.belkin.com/us/p/P-F7C027/).
-I also have one BeeWi temperature & humidity sensor http://www.bee-wi.com/bbw200,us,4,BBW200-A1.cfm.
+My stuff:
+* I've got a fan connected to a Wemo switch (http://www.belkin.com/us/p/P-F7C027/).
+* One BeeWi temperature & humidity sensor http://www.bee-wi.com/bbw200,us,4,BBW200-A1.cfm.
+* One BeeWi Smart LED Color Bulb http://www.bee-wi.com/bbl207,us,4,BBL207-A1.cfm.
 
 ## tempReaderWorker.js
 * gearman worker
@@ -25,6 +27,12 @@ I also have one BeeWi temperature & humidity sensor http://www.bee-wi.com/bbw200
 * detects when I'm close to my home and sends me a message via Telegram with the temperature.
 * It's a network sniffer
 * It detects when my mobile phone send a ARP package to my router (aka when I connect to my Wifi). It happens before I enter in my house, so the telegram message arrives before I put the key in the door :)
+
+## bulb.py
+* control BeeWi Smart LED Color Bulb.
+
+## alarm/crontab
+* crontab to turn on/off and set the color of the bulb
 
 ## supervisor.conf
 * all scripts are running in my Raspberry Pi3.
