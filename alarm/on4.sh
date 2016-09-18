@@ -1,3 +1,3 @@
-sudo /usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json on
-sudo /usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json dim
-sudo /usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json colour cc0000
+/usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json on
+/usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json dim
+/usr/bin/python /mnt/media/projects/temp/bulb.py /mnt/media/projects/temp/conf.json colour cc0000
