@@ -4,45 +4,33 @@ var gearman = new Gearman();
 
 var worker;
 
+
 function workerCallback(payload, worker) {
-    var text = payload.toString('utf8');
-    console.log(text);
-    var bulb;
-    switch (text) {
+    var text, bulb;
+    var callProcess = (process) => {
+        bulb = spawn('sudo', [`/mnt/media/projects/temp/alarm/${process}.sh`]);
+        bulb.on('close', (code) => {
+            worker.end("DONE");
+        });
+    };
+
+    action = payload.toString('utf8');
+    console.log("action", action);
+    switch (action) {
         case "bulbOff":
-            bulb = spawn('sudo', ['/mnt/media/projects/temp/alarm/off.sh']);
-            bulb.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                worker.end("DONE");
-            });
+            callProcess('off');
             break;
         case "bulbOn1":
-            bulb = spawn('sudo', ['/mnt/media/projects/temp/alarm/on1.sh']);
-            bulb.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                worker.end("DONE");
-            });
+            callProcess('on1');
             break;
         case "bulbOn2":
-            bulb = spawn('sudo', ['/mnt/media/projects/temp/alarm/on2.sh']);
-            bulb.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                worker.end("DONE");
-            });
+            callProcess('on2');
             break;
         case "bulbOn3":
-            bulb = spawn('sudo', ['/mnt/media/projects/temp/alarm/on3.sh']);
-            bulb.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                worker.end("DONE");
-            });
+            callProcess('on3');
             break;
         case "bulbOn4":
-            bulb = spawn('sudo', ['/mnt/media/projects/temp/alarm/on4.sh']);
-            bulb.on('close', (code) => {
-                console.log(`child process exited with code ${code}`);
-                worker.end("DONE");
-            });
+            callProcess('on4');
             break;
         case "temp":
             job = gearman.submitJob("temp.reader", "");
@@ -54,7 +42,10 @@ function workerCallback(payload, worker) {
             job.on("error", function(error){
                 console.log(error.message);
             });
+            break;
+        default:
+            worker.end("");
     }
 }
 
-gearman.registerWorker("temp", workerCallback);
+gearman.registerWorker("iot.worker", workerCallback);

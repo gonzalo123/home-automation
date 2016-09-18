@@ -36,7 +36,7 @@ except:
 
 def getSensorData():
     gm_client = gearman.GearmanClient(gearmanServer)
-    completed_job_request = gm_client.submit_job("temp", 'temp')
+    completed_job_request = gm_client.submit_job("iot.worker", 'temp')
     io = StringIO(completed_job_request.result)
     out = json.load(io)
     print out
@@ -44,7 +44,7 @@ def getSensorData():
 
 def bulb(action):
     gm_client = gearman.GearmanClient(gearmanServer)
-    completed_job_request = gm_client.submit_job("temp", action)
+    completed_job_request = gm_client.submit_job("iot.worker", action)
     io = StringIO(completed_job_request.result)
     print io
 
@@ -91,6 +91,7 @@ def command_temp(m):
 @bot.message_handler(commands=['bulbOff'])
 def command_bulbOff(m):
     if m.chat.id in allowedChatIDs:
+        bot.send_message(m.chat.id, "Conecting to bulb ...")
         bulb('bulbOff')
         message = "bulb Off"
         bot.send_message(m.chat.id, message)
@@ -100,6 +101,7 @@ def command_bulbOff(m):
 @bot.message_handler(commands=['bulbOn1'])
 def command_bulbOn1(m):
     if m.chat.id in allowedChatIDs:
+        bot.send_message(m.chat.id, "Conecting to bulb ...")
         bulb('bulbOn1')
         message = "bulb on (preset 1)"
         bot.send_message(m.chat.id, message)
@@ -109,6 +111,7 @@ def command_bulbOn1(m):
 @bot.message_handler(commands=['bulbOn2'])
 def command_bulbOn2(m):
     if m.chat.id in allowedChatIDs:
+        bot.send_message(m.chat.id, "Conecting to bulb ...")
         bulb('bulbOn2')
         message = "bulb on (preset 2)"
         bot.send_message(m.chat.id, message)
@@ -118,6 +121,7 @@ def command_bulbOn2(m):
 @bot.message_handler(commands=['bulbOn3'])
 def command_bulbOn3(m):
     if m.chat.id in allowedChatIDs:
+        bot.send_message(m.chat.id, "Conecting to bulb ...")
         bulb('bulbOn3')
         message = "bulb on (preset 3)"
         bot.send_message(m.chat.id, message)
@@ -127,6 +131,7 @@ def command_bulbOn3(m):
 @bot.message_handler(commands=['bulbOn4'])
 def command_bulbOn4(m):
     if m.chat.id in allowedChatIDs:
+        bot.send_message(m.chat.id, "Conecting to bulb ...")
         bulb('bulbOn4')
         message = "bulb on (preset 4)"
         bot.send_message(m.chat.id, message)
