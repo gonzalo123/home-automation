@@ -13,6 +13,11 @@ commands = {
     'switchON': 'switch ON the switch',
     'switchOFF': 'switch OFF the switch',
     'switchInfo': 'get switch info',
+    'bulbOff': 'turn off bulb',
+    'bulbOn1': 'turn on bulb (preset 1)',
+    'bulbOn2': 'turn on bulb (preset 2)',
+    'bulbOn3': 'turn on bulb (preset 3)',
+    'bulbOn4': 'turn on bulb (preset 4)',
 }
 
 logger = logging.getLogger()
@@ -31,10 +36,17 @@ except:
 
 def getSensorData():
     gm_client = gearman.GearmanClient(gearmanServer)
-    completed_job_request = gm_client.submit_job("temp", '')
+    completed_job_request = gm_client.submit_job("temp", 'temp')
+    io = StringIO(completed_job_request.result)
+    out = json.load(io)
+    print out
+    return out
+
+def bulb(action):
+    gm_client = gearman.GearmanClient(gearmanServer)
+    completed_job_request = gm_client.submit_job("temp", action)
     io = StringIO(completed_job_request.result)
     print io
-    return json.load(io)
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -72,6 +84,51 @@ def command_temp(m):
         bot.send_message(m.chat.id, "Reading information ...")
         sensorData = getSensorData()
         message = "Temperature: %s humidity: %s" % (sensorData['temperature'], sensorData['humidity'])
+        bot.send_message(m.chat.id, message)
+    else:
+        bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
+
+@bot.message_handler(commands=['bulbOff'])
+def command_bulbOff(m):
+    if m.chat.id in allowedChatIDs:
+        bulb('bulbOff')
+        message = "bulb Off"
+        bot.send_message(m.chat.id, message)
+    else:
+        bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
+
+@bot.message_handler(commands=['bulbOn1'])
+def command_bulbOn1(m):
+    if m.chat.id in allowedChatIDs:
+        bulb('bulbOn1')
+        message = "bulb on (preset 1)"
+        bot.send_message(m.chat.id, message)
+    else:
+        bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
+
+@bot.message_handler(commands=['bulbOn2'])
+def command_bulbOn2(m):
+    if m.chat.id in allowedChatIDs:
+        bulb('bulbOn2')
+        message = "bulb on (preset 2)"
+        bot.send_message(m.chat.id, message)
+    else:
+        bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
+
+@bot.message_handler(commands=['bulbOn3'])
+def command_bulbOn3(m):
+    if m.chat.id in allowedChatIDs:
+        bulb('bulbOn3')
+        message = "bulb on (preset 3)"
+        bot.send_message(m.chat.id, message)
+    else:
+        bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
+
+@bot.message_handler(commands=['bulbOn4'])
+def command_bulbOn4(m):
+    if m.chat.id in allowedChatIDs:
+        bulb('bulbOn4')
+        message = "bulb on (preset 4)"
         bot.send_message(m.chat.id, message)
     else:
         bot.send_message(m.chat.id, "Sory. I'm a private bot. I don't want to speak with you")
