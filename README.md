@@ -37,3 +37,7 @@ My stuff:
 ## supervisor.conf
 * all scripts are running in my Raspberry Pi3.
 * I need to keep alive all. So I supervisor to ensure process are up
+
+#References
+https://www.raspberrypi.org/forums/viewtopic.php?f=37&t=117729
+https://www.raspberrypi.org/forums/viewtopic.php?f=37&t=139848
