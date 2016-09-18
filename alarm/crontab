@@ -1,0 +1,7 @@
+# /etc/cron.d/iot: crontab fragment for php5
+
+35 7 * * 1-5 root   /mnt/media/projects/temp/alarm/on1.sh
+50 7 * * 1-5 root   /mnt/media/projects/temp/alarm/on2.sh
+00 8 * * 1-5 root   /mnt/media/projects/temp/alarm/on3.sh
+15 8 * * 1-5 root   /mnt/media/projects/temp/alarm/on4.sh
+20 8 * * 1-5 root   /mnt/media/projects/temp/alarm/off.sh

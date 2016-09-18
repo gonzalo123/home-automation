@@ -1,6 +1,7 @@
 {
     "telegramBotAPIKey": "PUT_HERE_YOUR_TELEGRAM_API_KEY",
     "beeWiAddress":"PUT_HERE_YOUR_BeeWi_Mac_address",
+    "beeWiAddress":"PUT_HERE_YOUR_BeeWi__bulb_Mac_address",
     "telegramChatId":"PUT_HERE_THE_TELEGRAM_CHAT_ID_WHERE_YOU_WANT_TO_SEND_MESSAGES",
     "routerIP": "ROUTER_IP",
     "myPhone": "my phone mac address",

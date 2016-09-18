@@ -4,9 +4,13 @@ Summer pet project
 I've got a fan connected to a Wemo switch (http://www.belkin.com/us/p/P-F7C027/).
 I also have one BeeWi temperature & humidity sensor http://www.bee-wi.com/bbw200,us,4,BBW200-A1.cfm.
 
-## worker.js
+## tempReaderWorker.js
 * gearman worker
 * it reads temperature and humidity from my BeeWi sensor via BTLE
+
+## worker.js
+* gearman worker
+* yes I know. It's ugly, but I need to add this worker. tempReaderWorker finish (process.exit()) after sending data to this worker. I don't want to free bt interface to be able to have more scripts using it. That's a fast and ugly solution but it works.
 
 ## bot.py
 * Telegram bot
