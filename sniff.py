@@ -23,7 +23,7 @@ except:
 
 def getSensorData():
     gm_client = gearman.GearmanClient([gearmanServer])
-    completed_job_request = gm_client.submit_job("iot.worker", 'break;')
+    completed_job_request = gm_client.submit_job("iot.worker", 'temp')
     io = StringIO(completed_job_request.result)
 
     return json.load(io)
